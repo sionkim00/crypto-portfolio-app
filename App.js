@@ -1,10 +1,10 @@
-import { StyleSheet, View } from "react-native";
-import CoinItem from "./src/components/CoinItem";
+import { StyleSheet, View, FlatList } from "react-native";
+import HomeScreen from "./src/screens/HomeScreen";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <CoinItem name={"Lukas"} />
+      <HomeScreen />
     </View>
   );
 }
