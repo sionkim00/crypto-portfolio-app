@@ -3,12 +3,7 @@ import React from "react";
 import { Ionicons, EvilIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
-export default function CoinDetailHeader({
-  image,
-  name,
-  market_cap_rank,
-  symbol,
-}) {
+export default function CoinDetailHeader({ image, market_cap_rank, symbol }) {
   return (
     <View style={styles.headerContainer}>
       <Ionicons name="chevron-back-sharp" size={30} color="white" />
