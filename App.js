@@ -1,3 +1,4 @@
+import "react-native-reanimated";
 import { StyleSheet, View, FlatList } from "react-native";
 import HomeScreen from "./src/screens/HomeScreen";
 import CoinDetailedScreen from "./src/screens/CoinDetailedScreen";
