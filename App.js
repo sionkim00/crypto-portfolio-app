@@ -1,16 +1,22 @@
 import "react-native-reanimated";
 import { StyleSheet, View, FlatList } from "react-native";
-import HomeScreen from "./src/screens/HomeScreen";
 import CoinDetailedScreen from "./src/screens/CoinDetailedScreen";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import Navigation from "./src/Navigation";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <GestureHandlerRootView>
-        <CoinDetailedScreen />
-      </GestureHandlerRootView>
-    </View>
+    <NavigationContainer
+      theme={{
+        colors: {
+          background: "#121212",
+        },
+      }}
+    >
+      <View style={styles.container}>
+        <Navigation />
+      </View>
+    </NavigationContainer>
   );
 }
 

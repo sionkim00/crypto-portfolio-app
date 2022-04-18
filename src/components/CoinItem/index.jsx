@@ -1,7 +1,8 @@
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Text, View, Pressable } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
 
 export default function CoinItem({ marketCoin }) {
   const {
@@ -12,10 +13,12 @@ export default function CoinItem({ marketCoin }) {
     symbol,
     market_cap,
     image,
+    id,
   } = marketCoin;
 
   const percentageColor =
     price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
+  const navigation = useNavigation();
 
   const normalizeMcap = (market_cap) => {
     if (market_cap >= 1_000_000_000_000) {
@@ -31,7 +34,10 @@ export default function CoinItem({ marketCoin }) {
     }
   };
   return (
-    <View style={styles.coinContainer}>
+    <Pressable
+      style={styles.coinContainer}
+      onPress={() => navigation.navigate("CoinDetail", { coinId: id })}
+    >
       <Image
         source={{
           uri: image,
@@ -67,6 +73,6 @@ export default function CoinItem({ marketCoin }) {
         <Text style={styles.title}>{current_price.toFixed(2)}</Text>
         <Text style={{ color: "white" }}>MCap {normalizeMcap(market_cap)}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 }
