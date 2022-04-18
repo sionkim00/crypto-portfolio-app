@@ -1,5 +1,5 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
+import { View, Text, Image, TextInput } from "react-native";
+import React, { useState, useEffect } from "react";
 import { Ionicons, EvilIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { LineChart } from "react-native-wagmi-charts";
@@ -7,29 +7,27 @@ import crypto from "../../../assets/data/crypto.json";
 import CoinDetailHeader from "../../components/CoinDetailHeader/CoinDetailHeader";
 import styles from "./styles";
 
-const data = [
-  {
-    timestamp: 1625945400000,
-    value: 33575.25,
-  },
-  {
-    timestamp: 1625946300000,
-    value: 33545.25,
-  },
-  {
-    timestamp: 1625947200000,
-    value: 33510.25,
-  },
-  {
-    timestamp: 1625948100000,
-    value: 33215.25,
-  },
-];
-
 export default function CoinDetailedScreen() {
   const { image, name, market_data, symbol, prices } = crypto;
+  const [coinValue, setCoinValue] = useState("1");
+  const [usdValue, setUsdValue] = useState(
+    market_data.current_price.usd.toString()
+  );
+
+  useEffect(() => {
+    const newUsdValue =
+      parseFloat(coinValue || 0) * market_data.current_price.usd;
+    setUsdValue(newUsdValue.toString());
+  }, [coinValue]);
+  useEffect(() => {
+    const newCoinValue =
+      parseFloat(usdValue || 0) / market_data.current_price.usd;
+    setCoinValue(newCoinValue.toString());
+  }, [usdValue]);
+
   const percentageColor =
     market_data.price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
+
   return (
     <View style={{ paddingHorizontal: 10 }}>
       <CoinDetailHeader
@@ -68,15 +66,43 @@ export default function CoinDetailedScreen() {
           </Text>
         </View>
       </View>
-      <LineChart.Provider
-        data={prices.map((price) => {
-          return { timestamp: price[0], value: price[1] };
-        })}
-      >
-        <LineChart>
-          <LineChart.Path color="red" />
-        </LineChart>
-      </LineChart.Provider>
+      <View>
+        <LineChart.Provider
+          data={prices.map((price) => {
+            return { timestamp: price[0], value: price[1] };
+          })}
+        >
+          <LineChart height={200}>
+            <LineChart.Path color={percentageColor}>
+              <LineChart.Gradient />
+            </LineChart.Path>
+            <LineChart.CursorCrosshair color="white">
+              <LineChart.Tooltip style={{ backgroundColor: "white" }} />
+            </LineChart.CursorCrosshair>
+          </LineChart>
+        </LineChart.Provider>
+        <View style={{ flexDirection: "row" }}>
+          <View style={styles.inputContainer}>
+            <Text style={{ color: "white" }}>{symbol.toUpperCase()}</Text>
+            <TextInput
+              style={styles.textInput}
+              value={coinValue.toString()}
+              keyboardType="numeric"
+              onChangeText={(text) => setCoinValue(text)}
+            />
+          </View>
+
+          <View style={styles.inputContainer}>
+            <Text style={{ color: "white" }}>USD</Text>
+            <TextInput
+              style={styles.textInput}
+              value={usdValue.toString()}
+              keyboardType="numeric"
+              onChangeText={(text) => setUsdValue(text)}
+            />
+          </View>
+        </View>
+      </View>
     </View>
   );
 }

@@ -13,5 +13,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   priceChange: { color: "white", fontSize: 17, fontWeight: "500" },
+  textInput: {
+    width: 130,
+    height: 40,
+    margin: 12,
+    borderBottomWidth: 1,
+    borderBottomColor: "white",
+    padding: 10,
+    fontSize: 16,
+    color: "white",
+  },
+  inputContainer: { flexDirection: "row", alignItems: "center", flex: 1 },
 });
 export default styles;
