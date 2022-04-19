@@ -3,6 +3,7 @@ import { StyleSheet, View, FlatList } from "react-native";
 import CoinDetailedScreen from "./src/screens/CoinDetailedScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigation from "./src/Navigation";
+import WatchlistProvider from "./src/Contexts/WatchlistContext";
 
 export default function App() {
   return (
@@ -13,9 +14,11 @@ export default function App() {
         },
       }}
     >
-      <View style={styles.container}>
-        <Navigation />
-      </View>
+      <WatchlistProvider>
+        <View style={styles.container}>
+          <Navigation />
+        </View>
+      </WatchlistProvider>
     </NavigationContainer>
   );
 }

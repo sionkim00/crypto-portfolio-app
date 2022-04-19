@@ -84,6 +84,7 @@ export default function CoinDetailedScreen() {
     <GestureHandlerRootView>
       <View style={{ paddingHorizontal: 10 }}>
         <CoinDetailHeader
+          coinId={id}
           image={coin.image.small}
           name={coin.name}
           symbol={coin.symbol}
