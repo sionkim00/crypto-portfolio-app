@@ -17,18 +17,18 @@ export default function CoinItem({ marketCoin }) {
   } = marketCoin;
 
   const percentageColor =
-    price_change_percentage_24h < 0 ? "#ea3943" : "#16c784";
+    price_change_percentage_24h <= 0 ? "#ea3943" : "#16c784";
   const navigation = useNavigation();
 
   const normalizeMcap = (market_cap) => {
     if (market_cap >= 1_000_000_000_000) {
-      return `${Math.floor(market_cap / 1_000_000_000_000)} T`;
+      return `${Math.floor(market_cap / 1_000_000_000_000)}T`;
     } else if (market_cap > 1_000_000_000) {
-      return `${Math.floor(market_cap / 1_000_000_000)} B`;
+      return `${Math.floor(market_cap / 1_000_000_000)}B`;
     } else if (market_cap > 1_000_000) {
-      return `${Math.floor(market_cap / 1_000_000)} M`;
+      return `${Math.floor(market_cap / 1_000_000)}M`;
     } else if (market_cap > 1_000) {
-      return `${Math.floor(market_cap / 1_000)} K`;
+      return `${Math.floor(market_cap / 1_000)}K`;
     } else {
       return `${market_cap}`;
     }
@@ -58,7 +58,7 @@ export default function CoinItem({ marketCoin }) {
           </View>
           <Text style={styles.text}>{symbol.toUpperCase()}</Text>
           <AntDesign
-            name={price_change_percentage_24h > 0 ? "arrowup" : "arrowdown"}
+            name={price_change_percentage_24h >= 0 ? "arrowup" : "arrowdown"}
             size={12}
             color={percentageColor}
             style={{ alignSelf: "center" }}
@@ -70,8 +70,10 @@ export default function CoinItem({ marketCoin }) {
       </View>
 
       <View style={{ marginLeft: "auto", alignItems: "flex-end" }}>
-        <Text style={styles.title}>{current_price.toFixed(2)}</Text>
-        <Text style={{ color: "white" }}>MCap {normalizeMcap(market_cap)}</Text>
+        <Text style={styles.title}>${current_price.toFixed(2)}</Text>
+        <Text style={{ color: "white" }}>
+          Market Cap ${normalizeMcap(market_cap)}
+        </Text>
       </View>
     </Pressable>
   );

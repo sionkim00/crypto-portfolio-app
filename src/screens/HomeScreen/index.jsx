@@ -4,7 +4,7 @@ import CoinItem from "../../components/CoinItem";
 import cryptocurrencies from "../../../assets/data/cryptocurrencies.json";
 import { getMarketData } from "../../services/requests";
 
-export default function index() {
+export default function Home() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(false);
 
