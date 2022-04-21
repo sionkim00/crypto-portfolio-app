@@ -21,14 +21,14 @@ export default function CoinItem({ marketCoin }) {
   const navigation = useNavigation();
 
   const normalizeMcap = (market_cap) => {
-    if (market_cap >= 1_000_000_000_000) {
-      return `${Math.floor(market_cap / 1_000_000_000_000)}T`;
-    } else if (market_cap > 1_000_000_000) {
-      return `${Math.floor(market_cap / 1_000_000_000)}B`;
-    } else if (market_cap > 1_000_000) {
-      return `${Math.floor(market_cap / 1_000_000)}M`;
-    } else if (market_cap > 1_000) {
-      return `${Math.floor(market_cap / 1_000)}K`;
+    if (market_cap >= 1000000000000) {
+      return `${Math.floor(market_cap / 1000000000000)}T`;
+    } else if (market_cap > 1000000000) {
+      return `${Math.floor(market_cap / 1000000000)}B`;
+    } else if (market_cap > 1000000) {
+      return `${Math.floor(market_cap / 1000000)}M`;
+    } else if (market_cap > 1000) {
+      return `${Math.floor(market_cap / 1000)}K`;
     } else {
       return `${market_cap}`;
     }
@@ -36,7 +36,7 @@ export default function CoinItem({ marketCoin }) {
   return (
     <Pressable
       style={styles.coinContainer}
-      onPress={() => navigation.navigate("CoinDetail", { coinId: id })}
+      onPress={() => navigation.navigate("CoinDetailScreen", { coinId: id })}
     >
       <Image
         source={{

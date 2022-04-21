@@ -3,32 +3,44 @@ import React from "react";
 import { AntDesign } from "@expo/vector-icons";
 import styles from "./styles";
 
-export default function PortfolioAssetItem() {
+export default function PortfolioAssetItem({ assetItem }) {
+  const amount_value = (
+    assetItem.quantityBought * assetItem.currentPrice
+  ).toFixed(2);
   return (
     <View style={styles.coinContainer}>
-      <Image
-        source={{ uri: "https://picsum.photos/200" }}
-        style={styles.coinImage}
-      />
+      <Image source={{ uri: assetItem.image }} style={styles.coinImage} />
       <View>
-        <Text style={styles.title}>Bitcoin</Text>
-        <Text style={styles.ticker}>BTC</Text>
+        <Text style={styles.title}>{assetItem.name}</Text>
+        <Text style={styles.ticker}>{assetItem.ticker}</Text>
       </View>
       <View style={styles.currentPriceContainer}>
-        <Text style={styles.title}>$4000</Text>
+        <Text style={styles.title}>${assetItem.currentPrice}</Text>
         <View style={{ flexDirection: "row" }}>
           <AntDesign
-            name={"arrowup"}
+            name={
+              assetItem.priceChangePercentage >= 0 ? "arrowup" : "arrowdown"
+            }
             size={12}
-            color={"#16c784"}
+            color={assetItem.priceChangePercentage >= 0 ? "#16c784" : "#e74c3c"}
             style={{ alignSelf: "center" }}
           />
-          <Text style={{ color: "#16c784", fontWeight: "600" }}>1.2%</Text>
+          <Text
+            style={{
+              color:
+                assetItem.priceChangePercentage >= 0 ? "#16c784" : "#e74c3c",
+              fontWeight: "600",
+            }}
+          >
+            {assetItem.priceChangePercentage.toFixed(2)}%
+          </Text>
         </View>
       </View>
       <View style={styles.quantityContainer}>
-        <Text style={styles.title}>$8000</Text>
-        <Text style={styles.ticker}>2 BTC</Text>
+        <Text style={styles.title}>${amount_value}</Text>
+        <Text style={styles.ticker}>
+          {assetItem.quantityBought} {assetItem.ticker}
+        </Text>
       </View>
     </View>
   );

@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
   valueChange: {
     fontWeight: "600",
     fontSize: 16,
-    color: "#16c874",
   },
   percentageChange: {
     color: "white",
