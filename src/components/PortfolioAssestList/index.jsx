@@ -67,7 +67,7 @@ export default function PortfolioAssetsList() {
                 }}
               >
                 <AntDesign
-                  name={"arrowup"}
+                  name={getPercentageChange() >= 0 ? "arrowup" : "arrowdown"}
                   size={12}
                   color={"white"}
                   style={{ alignSelf: "center" }}
