@@ -94,7 +94,7 @@ export default function AddNewAssetScreen() {
       />
       {selectedCoin && (
         <>
-          <View style={styles.boughtQuantityContainer}>
+          <View style={styles.quantityContainer}>
             <View style={{ flexDirection: "row" }}>
               <TextInput
                 style={{ color: "white", fontSize: 90 }}
@@ -107,7 +107,7 @@ export default function AddNewAssetScreen() {
                 {selectedCoin.symbol.toUpperCase()}
               </Text>
             </View>
-            <Text style={styles.pricePerCoin}>
+            <Text style={styles.coinPriceText}>
               ${selectedCoin.market_data.current_price.usd} per coin
             </Text>
           </View>
