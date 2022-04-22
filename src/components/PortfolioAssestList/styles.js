@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
   },
   priceChangePercentageContainer: {
     flexDirection: "row",
-    backgroundColor: "#16c784",
     paddingHorizontal: 5,
     paddingVertical: 8,
     borderRadius: 5,

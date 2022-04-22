@@ -59,7 +59,13 @@ export default function PortfolioAssetsList() {
                   ${getCurrentValue()} (All Time)
                 </Text>
               </View>
-              <View style={styles.priceChangePercentageContainer}>
+              <View
+                style={{
+                  ...styles.priceChangePercentageContainer,
+                  backgroundColor:
+                    getPercentageChange() >= 0 ? "#16c784" : "#e74c3c",
+                }}
+              >
                 <AntDesign
                   name={"arrowup"}
                   size={12}
