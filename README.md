@@ -1,8 +1,6 @@
-# Coinmarketcap clone
+# Crypto Portfolio App
 ## Live Preview (Expo)
 https://expo.dev/@sionkim00/coinmarketcap-clone
-## Concept
-I wanted to build a Coinmarketcap clone to deeply understand how it works in the background!
 ## Stacks
 
  - React Native
