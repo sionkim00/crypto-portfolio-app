@@ -1,4 +1,4 @@
-# Crypto Portfolio App
+# Investment Tracker App
 ## Live Preview (Expo)
 https://expo.dev/@sionkim00/coinmarketcap-clone
 ## Stacks
